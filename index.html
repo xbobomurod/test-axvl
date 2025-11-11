@@ -1,70 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Al-Xorazmiy loyihasi Test sayt</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Al-Xorazmiy Test Sayt</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-    <header>
-        <div class="logo">
-            <h1>Test</h1>
-        </div>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center p-6">
+    <header class="mb-6">
+        <h1 class="text-3xl font-bold text-blue-700">Al-Xorazmiy Test</h1>
     </header>
-    <section class="tests">
-        <div>
-            <p>HTML nima?</p>
-            <select name="savol1" id="savol1">
-                <option value="1">Dasturlash tili</option>
-                <option value="2">Veb sahifani tuzish uchun til</option>
-                <option value="3">O‘yin yaratish dasturi</option>
-                <option value="4">Hech biri</option>
-            </select>
 
-            <p>CSS nimaga xizmat qiladi?</p>
-            <select name="savol2" id="savol2">
-                <option value="1">Sahifani bezatish uchun</option>
-                <option value="2">Ma’lumotlar bazasi bilan ishlash uchun</option>
-                <option value="3">Server yaratish uchun</option>
-                <option value="4">Hech biri</option>
-            </select>
-
-            <p>JavaScript nima qiladi?</p>
-            <select name="savol3" id="savol3">
-                <option value="1">Sahifani interaktiv qiladi</option>
-                <option value="2">Matnni tahrirlaydi</option>
-                <option value="3">Faqat rasm qo‘shadi</option>
-                <option value="4">Hech biri</option>
-            </select>
-
-            <p>HTMLda <code>&lt;img&gt;</code> tegi nimaga ishlatiladi?</p>
-            <select name="savol4" id="savol4">
-                <option value="1">Rasm qo‘shish uchun</option>
-                <option value="2">Matn yozish uchun</option>
-                <option value="3">Skript yozish uchun</option>
-                <option value="4">Hech biri</option>
-            </select>
-
-            <p>CSSda rang berish uchun qaysi xususiyat ishlatiladi?</p>
-            <select name="savol5" id="savol5">
-                <option value="1">color</option>
-                <option value="2">font-size</option>
-                <option value="3">margin</option>
-                <option value="4">border</option>
-            </select>
-
-            <p>JavaScriptda o‘zgaruvchi e’lon qilish uchun qaysi so‘z ishlatiladi?</p>
-            <select name="savol6" id="savol6">
-                <option value="1">var</option>
-                <option value="2">let</option>
-                <option value="3">const</option>
-                <option value="4">Barchasi to‘g‘ri</option>
-            </select>
+    <section class="bg-white shadow-lg rounded-xl p-6 w-full max-w-2xl space-y-6">
+        <div id="tests" class="space-y-6">
+            <!-- Javascript bilan qo'shman savolarni -->
         </div>
 
+        <button onclick="tekshirish()"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg text-lg font-semibold">
+            Natijani ko‘rish
+        </button>
+
+        <p id="natija" class="text-center text-xl font-bold mt-4">
+            <!-- jaboblar shu joyda chiqadi -->
+        </p>
     </section>
+
+    <script>
+        const savollar = [
+            { s: "HTML nima?", javob: 2, o: ["Dasturlash tili", "Veb sahifani tuzish uchun til", "O‘yin dasturi", "Hech biri"] },
+            { s: "CSS nimaga xizmat qiladi?", javob: 1, o: ["Sahifani bezatish uchun", "Ma’lumotlar bazasi uchun", "Server yaratish uchun", "Hech biri"] },
+            { s: "JavaScript nima qiladi?", javob: 1, o: ["Sahifani interaktiv qiladi", "Matnni tahrirlaydi", "Faqat rasm qo‘shadi", "Hech biri"] },
+            { s: `HTMLda img tegi nima uchun?`, javob: 1, o: ["Rasm qo‘shish uchun", "Matn yozish uchun", "Skript uchun", "Hech biri"] },
+            { s: "CSSda rang berish uchun?", javob: 1, o: ["color", "font-size", "margin", "border"] },
+            { s: "JSda o‘zgaruvchi uchun?", javob: 4, o: ["var", "let", "const", "Barchasi to‘g‘ri"] },
+            { s: "HTMLda havola uchun?", javob: 1, o: ["a tegi", "link tegi", "url tegi", "button tegi"] },
+            { s: "CSSda fon rangi uchun?", javob: 2, o: ["color", "background-color", "text-color", "bg"] },
+            { s: "JSda funksiya e’lon qilish?", javob: 1, o: ["function", "func", "method", "declare"] },
+            { s: "HTMLda sarlavha uchun?", javob: 2, o: ["p", "h1", "div", "span"] },
+
+            { s: "CSSda matnni markazga qo‘yish uchun?", javob: 1, o: ["text-align: center;", "align: middle;", "justify: center;", "center: true;"] },
+            { s: "JSda massiv uchun?", javob: 1, o: ["[]", "{}", "<>", "()"] },
+            { s: "HTMLda jadval uchun?", javob: 1, o: ["table", "grid", "tab", "data"] },
+            { s: "CSSda tashqi oraliq uchun?", javob: 1, o: ["margin", "padding", "border", "space"] },
+            { s: "JSda qiymatni chiqarish uchun?", javob: 1, o: ["console.log()", "print()", "echo()", "display()"] },
+        ]
+
+        const container = document.getElementById("tests")
+
+        // savollarni js orqali qo'shih forEach yordamida
+        savollar.forEach((savol, i) => {
+            const div = document.createElement("div")
+
+            div.className = "p-4 border border-gray-200 rounded-md hover:shadow-md bg-gray-100"
+
+            div.innerHTML = `
+          <p class="font-medium mb-2">${i + 1}. ${savol.s}</p>
+
+          <select id="savol${i}" class="w-full border-gray-300 rounded-lg p-2">
+            <option value="">Javob tanlang</option>
+            ${savol.o.map((opt, idx) => `<option value="${idx + 1}">${opt}</option>`).join("")}
+          </select>
+
+          <p id="natija${i}" class="mt-2 text-sm font-semibold"></p>
+        `
+
+            container.appendChild(div)
+
+        })
+
+        // javoblarni tekshirishh ham umumiy natijani chiqarish 
+        function tekshirish() {
+            let togri = 0
+            savollar.forEach((savol, i) => {
+                const tanlangan = document.getElementById(`savol${i}`).value
+                const natijaEl = document.getElementById(`natija${i}`)
+                if (tanlangan == savol.javob) {
+                    togri++
+                    natijaEl.textContent = "Togri"
+                    natijaEl.className = "text-green-600 mt-2 text-sm font-semibold"
+                } else {
+                    natijaEl.textContent = "Notogri"
+                    natijaEl.className = "text-red-600 mt-2 text-sm font-semibold"
+                }
+            })
+            document.getElementById("natija").textContent = `Umumiya to'gri javoblar soni ${togri} / ${savollar.length}`
+        }
+
+    </script>
 </body>
 
 </html>
